@@ -1,3 +1,6 @@
+# Copy this file to config.py
+# Insert correct values in new file
+
 class Config:
     mqtt_user = "username"
     mqtt_pass = ""

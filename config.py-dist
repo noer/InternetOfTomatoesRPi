@@ -1,0 +1,4 @@
+class Config:
+    mqtt_user = "username"
+    mqtt_pass = ""
+    ID = 1

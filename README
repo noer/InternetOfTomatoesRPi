@@ -1,0 +1,5 @@
+apt install libgpiod2
+
+or directly:
+wget http://cdn-fastly.deb.debian.org/debian/pool/main/libg/libgpiod/libgpiod2_1.4.1-3_armhf.deb
+sudo dpkg -i libgpiod2_1.4.1-3_armhf.deb

@@ -1,15 +1,22 @@
 import time
 import json
-from LED import LEDStrip
-from dht_sensor import DHTSensor
-from adc_sensor import ADCSensor
 from config import Config
 import global_settings as gs
 
 gs.init()
-led = LEDStrip(gs.led_pin)
-dht = DHTSensor(gs.dht_pin)
-adc = ADCSensor({0: 'light', 2: 'soil'})
+
+if Config.enable_led:
+    from LED import LEDStrip
+    led = LEDStrip(gs.led_pin)
+
+if Config.enable_dht:
+    from dht_sensor import DHTSensor
+    dht = DHTSensor(gs.dht_pin)
+
+if Config.enable_adc:
+    from adc_sensor import ADCSensor
+    adc = ADCSensor({0: 'light', 2: 'soil'})
+
 runtime_settings = {
     'update_interval': 30
 }
@@ -17,7 +24,6 @@ runtime_settings = {
 
 # --- Setup MQTT Subscribes ---
 def led_on_message(message):
-    #print("message received ", str(message.payload.decode("utf-8")))
     value = int(message.payload)
     led.fade(value)
 
@@ -28,7 +34,9 @@ def conf_on_message(message):
     save_settings()
 
 
-gs.mqtt.subscribe('/control/' + str(Config.ID) + '/led', led_on_message)
+if Config.enable_led:
+    gs.mqtt.subscribe('/control/' + str(Config.ID) + '/led', led_on_message)
+
 gs.mqtt.subscribe('/conf/' + str(Config.ID), conf_on_message)
 # --- Setup MQTT Subscribes ---
 

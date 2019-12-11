@@ -5,3 +5,7 @@ class Config:
     mqtt_user = "username"
     mqtt_pass = ""
     ID = 1
+
+    enable_adc = 1
+    enable_dht = 1
+    enable_led = 1

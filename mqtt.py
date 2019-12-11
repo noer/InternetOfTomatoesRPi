@@ -21,10 +21,6 @@ class MQTT:
         self.mqtt.subscribe(topic)
 
     def on_message(self, client, userdata, message):
-        print("message received ", str(message.payload.decode("utf-8")))
-        print("message topic=", message.topic)
-        print("message qos=", message.qos)
-        print("message retain flag=", message.retain)
         for topic, cb in self.subs.items():
             if topic == message.topic:
                 cb(message)

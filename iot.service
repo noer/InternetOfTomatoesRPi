@@ -1,0 +1,13 @@
+[Unit]
+Description=InternetOfTomatoes Service
+After=multi-user.target
+Conflicts=getty@tty1.service
+
+[Service]
+Type=simple
+WorkingDirectory=/opt/InternetOfTomatoesRPi
+ExecStart=/usr/bin/python3 /opt/InternetOfTomatoesRPi/greenhouse.py
+StandardInput=tty-force
+
+[Install]
+WantedBy=multi-user.target

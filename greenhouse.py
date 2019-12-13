@@ -22,5 +22,5 @@ while True:
                 value = fn.convert_soil_value(value)
             gs.mqtt.publish('/sensor/'+name, fn.gen_json_message(name, value))
 
-    time.sleep(fn.runtime_settings['update_interval'])
+    time.sleep(int(fn.runtime_settings['update_interval']))
 
